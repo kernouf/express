@@ -11,20 +11,16 @@ export default class Router {
 		this.router(url);
 	}
 
-	static async router(path = '/home') {
+	static async router(path = '/') {
 		// Tester chaque route pour voir si y a un potentiel match
 
-		if (path == '/' && connected) {
-			Router.navigateTo();
-		} else {
-			let route = this.routes.find((route) => route.path === path);
+		let route = this.routes.find((route) => route.path === path);
 
-			if (!route) route = this.routes[0];
+		if (!route) route = this.routes[0];
 
-			const page = new route.view();
-			page.mount?.(this.contentElement);
-			this.linksElement();
-		}
+		const page = route.view;
+		page.mount?.(this.contentElement);
+		this.linksElement();
 	}
 
 	static linksElement() {
@@ -33,11 +29,9 @@ export default class Router {
 			if (link.hasAttribute('data-link'))
 				link.addEventListener('click', (event) => {
 					event.preventDefault();
-					console.log('clicked')
 					const element = event
 						.composedPath()
 						.find((el) => el.localName == 'a');
-					//console.log(element.getAttribute('href'));
 					Router.navigateTo(element.getAttribute('href'));
 				});
 		});
@@ -62,9 +56,8 @@ export default class Router {
 			if (buttons.hasAttribute('backBtn'))
 				buttons.addEventListener('click', (event) => {
 					event.preventDefault();
-					Router.navigateTo();
+					Router.navigateTo('/');
 				});
 		});
-		
 	}
 }

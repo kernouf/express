@@ -1,7 +1,8 @@
+import { connected } from '../../controller/loginManager.js';
 import Component from './Component.js';
 
 export default class NavBar extends Component {
-	constructor(connected = false) {
+	constructor() {
 		super('header');
 		this.children = [
 			new Component(
@@ -13,15 +14,23 @@ export default class NavBar extends Component {
 							'a',
 							[
 								{ name: 'class', value: 'navbar-brand' },
-								{ name: 'href', value: '/home' },
+								{ name: 'href', value: '/' },
 								{ name: 'data-link' },
 							],
-							new Component('img',[{name: 'src', value:'./images/logo.png'},{name:'id', value:'logo'}, {name:'data-link', value:''}],[])
+							new Component(
+								'img',
+								[
+									{ name: 'src', value: './images/logo.png' },
+									{ name: 'id', value: 'logo' },
+									{ name: 'data-link', value: '' },
+								],
+								[]
+							)
 						),
 						new Component(
 							'div',
 							{ name: 'class', value: 'buttons' },
-							this.#getButton(connected)
+							this.#getButton()
 						),
 					]),
 				]
@@ -29,7 +38,7 @@ export default class NavBar extends Component {
 		];
 	}
 
-	#getButton(connected) {
+	#getButton() {
 		if (connected) {
 			return [
 				new Component(

@@ -1,3 +1,4 @@
+import Router from '../Router';
 import { getRequest, postRequest } from './connectionManager';
 import { connected } from './loginManager';
 
@@ -5,23 +6,24 @@ let projets = [];
 let fichiers = [];
 let currentProject = 1;
 
-function newFile(files) {
-	if (connected) {
-		Array.from(files).forEach((file) => {
-			const formData = new FormData();
-			console.log();
-			formData.append('file', file);
+async function newFile(files) {
+	const promises = [];
+	Array.from(files).forEach((file) => {
+		promises.push(
 			postRequest(
 				`projet/${currentProject}/fichier?name=${file.name}`,
-				formData,
+				file,
 				true
-			);
-		});
-	}
+			)
+		);
+	});
+	await Promise.all(promises);
+	Router.navigateTo();
 }
 
 async function getAnalyse() {
-	return await getRequest(`analyse/${currentProject}`);
+	const response = await getRequest(`analyse/${currentProject}`);
+	return response.json();
 }
 
 async function refreshAll() {
@@ -34,7 +36,8 @@ function getProjectsFromUser() {
 }
 
 async function requestProjectsFromUser() {
-	projets = await getRequest('projet');
+	const response = await getRequest('projet');
+	projets = await response.json();
 }
 
 function getFichiersFromUser() {
@@ -42,7 +45,14 @@ function getFichiersFromUser() {
 }
 
 async function requestFichiersFromProject() {
-	fichiers = await getRequest(`projet/${currentProject}/fichier`);
+	const response = await getRequest(`projet/${currentProject}/fichier`);
+	fichiers = await response.json();
 }
 
-export { newFile, getProjectsFromUser, refreshAll, getAnalyse };
+export {
+	refreshAll,
+	getProjectsFromUser,
+	getFichiersFromUser,
+	newFile,
+	getAnalyse,
+};

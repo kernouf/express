@@ -1,7 +1,7 @@
 body {
 	/*background: url('../images/2584726.jpg');
 	background-size: cover;*/
-	background-color: papayawhip;
+	background-color: rgb(201, 201, 201);
 }
 header {
 	background-color: black;
@@ -35,7 +35,7 @@ button {
 }
 
 #logo {
-	height : 50px;
+	height: 50px;
 }
 
 #btnleft {
@@ -44,7 +44,7 @@ button {
 }
 
 .btn-outline-success {
-	color: white ;
+	color: white;
 	border-color: red;
 	background-color: red;
 	opacity: 100%;
@@ -80,7 +80,8 @@ p {
 }
 
 .guest-zone,
-.home-zone {
+.home-zone,
+.analyse-zone {
 	display: flex;
 	justify-content: space-evenly;
 	padding: 20px;
@@ -123,6 +124,11 @@ span {
 #connextion {
 	background-position: center;
 }
+
+.analyse-zone li {
+	font-size: 1.5em;
+}
+/*
 #drop {
 	background-image: url(../images/drag-and-drop-1.png);
 	background-repeat: no-repeat;
@@ -181,7 +187,7 @@ span {
 	font-size: 14px;
 	text-align: center;
 }
-
+*/
 #btn-import {
 	align-self: flex-start;
 	margin-top: auto;

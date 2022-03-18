@@ -4,11 +4,11 @@ import FilesTable from './FilesTable';
 import ProjectsTable from './ProjectsTable';
 
 export default class HomeZone extends Component {
-	constructor() {
+	constructor(files = null, projects = null) {
 		super('div', { name: 'class', value: 'home-zone' }, [
-			new FilesTable(),
+			new FilesTable(files),
 			new DropZone(),
-			new ProjectsTable(),
+			new ProjectsTable(projects),
 		]);
 	}
 }

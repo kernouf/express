@@ -5,25 +5,37 @@ let connected = false;
 let login = '';
 let credentials = '';
 
-function connect() {
+async function connect() {
 	const username = document.querySelector('#username').value;
 	const password = document.querySelector('#password').value;
 
 	credentials = btoa(`${username}:${password}`);
 
-	getRequest('login', authenticationSuccess(username));
+	let res = await getRequest('login', null, authenticationfailed);
+	if (res != undefined) {
+		authenticationSuccess(res.text());
+	}
 }
+
 function disconnect() {
-	connected = false;
-	login = undefined;
-	credentials = '';
-	Router.navigateTo('/home');
+	clearUser();
+	Router.navigateTo('/');
 }
 
 const authenticationSuccess = (username) => {
 	connected = true;
 	login = username;
-	Router.navigateTo('/home');
+	Router.navigateTo('/');
+};
+
+const authenticationfailed = (response) => {
+	clearUser();
+};
+
+const clearUser = () => {
+	connected = false;
+	login = undefined;
+	credentials = '';
 };
 
 export { connected, login, connect, disconnect, credentials };

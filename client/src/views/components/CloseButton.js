@@ -17,7 +17,6 @@ export default class CloseButton extends Component {
 							{ name: 'type', value: 'button' },
 							{ name: 'backBtn' },
 							{ name: 'class', value: 'btn btn-outline-danger me-md-2' },
-							{ name: 'href', value: 'javascript:history.go(-1)' },
 						],
 						'Fermer'
 					),

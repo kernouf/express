@@ -6,13 +6,16 @@ import CloseButton from './components/CloseButton';
 export default class Index extends Page {
 	constructor() {
 		super('help');
-		this.children = [new NavBar(false), new HelpZone(), new CloseButton()];
-
 		this.setTitle('Aide');
+	}
+
+	refresh() {
+		this.children = [new NavBar(), new HelpZone(), new CloseButton()];
 	}
 
 	mount(element) {
 		super.mount(element);
+		this.refresh();
 		this.element.innerHTML = this.render();
 	}
 }

@@ -4,6 +4,7 @@ import Page from './Page';
 //import Chargement from './Chargement';
 import NavBar from './components/NavBar';
 import ProjectsTables from './components/ProjectsTable';
+import FilesTable from './components/FilesTable';
 import HomeZone from './components/HomeZone';
 import GuestZone from './components/GuestZone';
 import InfoButton from './components/InfoButton';
@@ -14,16 +15,22 @@ import {
 	refreshAll,
 	getProjectsFromUser,
 	newFile,
+	getFichiersFromUser,
 } from '../controller/filesManager';
 
 export default class Index extends Page {
 	constructor() {
 		super('guest');
+	}
+
+	refresh() {
 		if (connected) {
+			const files = getFichiersFromUser();
+			const projects = getProjectsFromUser();
 			this.children = [
-				new NavBar(true),
+				new NavBar(),
 				new Component('h1', null, 'Tableau de bord'),
-				new HomeZone(),
+				new HomeZone(files, projects),
 				new InfoButton(),
 			];
 			this.setTitle(`Home sweet Home - ${login}`);
@@ -35,22 +42,33 @@ export default class Index extends Page {
 
 	mount(element) {
 		super.mount(element);
-		if (!connected) {
-			this.element.innerHTML = this.render();
-		} else {
-			this.element.innerHTML = this.render();
-			this.setProject();
+		this.refresh();
+
+		this.element.innerHTML = this.render();
+
+		if (connected) {
+			this.setData();
 		}
 
 		setElement();
 		setFileImportCallback((files) => newFile(files));
 	}
 
-	async setProject() {
+	async setData() {
 		await refreshAll();
+		this.setProject();
+		this.setFiles();
+	}
+
+	setProject() {
 		let projets = getProjectsFromUser();
 		let component = new ProjectsTables(projets);
-		component.refreshProjects(projets);
 		document.getElementById('projects-table').innerHTML = component.render();
+	}
+
+	setFiles() {
+		let files = getFichiersFromUser();
+		let component = new FilesTable(files);
+		document.getElementById('files-table').innerHTML = component.render();
 	}
 }

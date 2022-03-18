@@ -16,7 +16,7 @@ export default class ProjectsTables extends Component {
 		this.refreshProjects(projets);
 	}
 
-	refreshProjects(projects) {
+	refreshProjects(projects = []) {
 		const table = new Component('table', [
 			{ name: 'class', value: 'table table-striped' },
 		]);
@@ -28,15 +28,7 @@ export default class ProjectsTables extends Component {
 		projects.forEach((element) => {
 			rows.push(
 				new Component('tr', null, [
-					new Component(
-						'td',
-						null,
-						new Component(
-							'a',
-							{ name: 'href', value: `/${element.id}` },
-							element.nom
-						)
-					),
+					new Component('td', null, new Component('a', null, element.nom)),
 				])
 			);
 			idx++;
