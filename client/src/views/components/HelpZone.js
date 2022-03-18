@@ -45,12 +45,22 @@ export default class HelpZone extends Component {
         return `
         <div class="d-flex align-items-start">
         <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-        <button class="nav-link active" id="v-pills-cf-tab" data-bs-toggle="pill" data-bs-target="#v-pills-cf" type="button" role="tab" aria-controls="v-pills-cf" aria-selected="false">Conseils fonctionnels</button>
-        <button class="nav-link" id="v-pills-cu-tab" data-bs-toggle="pill" data-bs-target="#v-pills-cu" type="button" role="tab" aria-controls="v-pills-cu" aria-selected="true">Conseils d'utilisation</button>
+        <button class="nav-link active" id="v-pills-cu-tab" data-bs-toggle="pill" data-bs-target="#v-pills-cu" type="button" role="tab" aria-controls="v-pills-cu" aria-selected="true">Conseils d'utilisation</button>
+        <button class="nav-link " id="v-pills-cf-tab" data-bs-toggle="pill" data-bs-target="#v-pills-cf" type="button" role="tab" aria-controls="v-pills-cf" aria-selected="false">Conseils fonctionnels</button>
         </div>
         <div class="tab-content" id="v-pills-tabContent">
-        <div class="tab-pane fade " id="v-pills-cu" role="tabpanel" aria-labelledby="v-pills-home-tab">...</div>
-        <div class="tab-pane fade show active" id="v-pills-cf" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+        <div class="tab-pane fade show active" id="v-pills-cu" role="tabpanel" aria-labelledby="v-pills-home-tab">
+        <p><b><i>EasyAnalyse</i></b> est une application ouverte à tous qui accompagne durant l'analyse fonctionnelle.</p>
+        <p>Vous pouvez l'utiliser en tant que <i>Guest</i> ou en tant que <i>User connecté.</i></p>
+        <p>Si vous choisissez de vous connecter utilisez votre login et votre mot de passe ou inscrivez-vous en renseignant les informations demandées.</p> 
+        <p>Dans les deux cas, vous pourrez importer des fichiers sur la page d'accueuil ou votre espace personnel.</p>
+        <p>Si vous choisissez d'être connecté, vous aurez en plus l'avantage de pouvoir stocker vos fichiers et les répartir en projets. </p>
+        <p>Une fois vos fichiers importés, vous pourrez analyser la cohérence en appuyant sur le bouton <b>Analyser</b>.</p>
+        <p>Le rapport d'analyse s'affiche pour vous féliciter ou relever les erreurs commises.</p>
+        <p>Cette application a été développée par l'équipe <i>Rouge</i>.</p>
+        <p style="color : red;">© Copyright <i>EasyAnalyse</i> Tous droits réservés. </p>
+        </div>
+        <div class="tab-pane fade " id="v-pills-cf" role="tabpanel" aria-labelledby="v-pills-profile-tab">
             <nav>
                 <div class="nav nav-tabs" id="nav-tab" role="tablist">
                 <button class="nav-link active" id="nav-1-tab" data-bs-toggle="tab" data-bs-target="#nav-1" type="button" role="tab" aria-controls="nav-1" aria-selected="true">BPMN</button>
