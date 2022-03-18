@@ -1,0 +1,20 @@
+{
+	"name": "EaseAnalyse",
+	"version": "0.1.0",
+	"description": "Serveur Express JS",
+	"main": "myChart.js",
+	"scripts": {
+		"build": "webpack",
+		"watch": "webpack --watch",
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"author": "azzouz-camus-lantoine",
+	"license": "ISC",
+	"devDependencies": {
+		"copy-webpack-plugin": "^10.2.1",
+		"html-webpack-plugin": "^5.5.0",
+		"webpack": "^5.67.0",
+		"webpack-cli": "^4.9.2",
+		"webpack-dev-server": "^4.7.3"
+	}
+}
